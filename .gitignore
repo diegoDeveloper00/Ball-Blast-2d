@@ -9,7 +9,10 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
-
+/[Aa]ssets/TextMesh Pro/*.meta
+/[Aa]ssets/TextMesh Pro/*.txt
+/[Aa]ssets/TextMesh Pro/*.png
+/[Aa]ssets/TextMesh Pro/*.pdf
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
 
