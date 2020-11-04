@@ -22,10 +22,12 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.tag.Equals("Ball"))
+        if (collision.GetComponent<Ball>())
         {
-            Debug.Log("damage the ball");
+            collision.GetComponent<Ball>().TakeDamage(1);
+            Destroy(this.gameObject);
         }
+        Destroy(this.gameObject, 3f);
 
     }
 }

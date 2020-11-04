@@ -12,27 +12,40 @@ public class BallSpawner : MonoBehaviour
 
     float spawnDelay;
 
-    public GameObject ball;
+    public GameObject[] balls;
 
+    public int randomIndex;
     // Start is called before the first frame update
     void Start()
     {
+        Spawn();
+
+    }
+
+    private void Spawn()
+    {
         ballQuantity = Random.Range(1, 3);
 
-        for(int i = 0; i < ballQuantity; i++)
+         randomIndex= Random.Range(0, balls.Length);
+
+        for (int i = 0; i < ballQuantity; i++)
         {
-            randomVariable = Random.Range(-8, 8);
+            randomVariable = Random.Range(-6, 6);
             if (randomVariable >= 0)
             {
-                randomPos = new Vector2(8, Random.Range(0, 5));
+                randomPos = new Vector2(6, Random.Range(0, 5));
             }
             else if (randomVariable < 0)
             {
-                randomPos = new Vector2(-8, Random.Range(0, 5));
+                randomPos = new Vector2(-6, Random.Range(0, 5));
             }
-            Instantiate(ball, randomPos, Quaternion.identity);
+            Instantiate(balls[randomIndex], randomPos, Quaternion.identity);
         }
-       
+    }
+
+    public GameObject[] getBallArray()
+    {
+        return balls;
     }
 
     // Update is called once per frame
