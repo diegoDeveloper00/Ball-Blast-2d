@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 7141099742542280824}
   m_Layer: 8
   m_Name: BigBall
-  m_TagString: BigBall
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,7 +234,7 @@ Transform:
   m_GameObject: {fileID: 8340185643902879895}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.508, y: 1.813, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 0}
+  m_LocalScale: {x: 2.916, y: 2.916, z: 0}
   m_Children:
   - {fileID: 8268420973939570573}
   m_Father: {fileID: 0}

@@ -46,12 +46,12 @@ public class Ball : MonoBehaviour
         healtNum -= damage;
         if (healtNum == 0)
         {
-            if (gameObject.CompareTag("BigBall"))
+            if (gameObject.name.Equals("BigBall"))
             {
                 Destroy(this.gameObject);
                 instantiateMultipleBall(1);
 
-            }else if (gameObject.CompareTag("MediumBall"))
+            }else if (gameObject.name.Equals("MediumBall"))
             {
                 Destroy(this.gameObject);
                 instantiateMultipleBall(0);
@@ -64,7 +64,8 @@ public class Ball : MonoBehaviour
     {
         for (int i = 0; i < 2; i++)
         {
-            Instantiate(ballArray[index], transform.position, Quaternion.identity);
+            GameObject temp=Instantiate(ballArray[index], transform.position, Quaternion.identity);
+            temp.name = "" + ballArray[index].name + "";
             transform.position = new Vector2(transform.position.x+2,transform.position.y);
         }
     }

@@ -18,15 +18,20 @@ public class BallSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Spawn();
 
+        InvokeRepeating("Spawn",0f, Random.Range(3, 10));
     }
 
     private void Spawn()
     {
         ballQuantity = Random.Range(1, 3);
 
-         randomIndex= Random.Range(0, balls.Length);
+         randomIndex = Random.Range(0, balls.Length);
+
+        if (GameManager.getInstance.ballPerLevel == 1)
+        {
+            ballQuantity = 1;
+        }
 
         for (int i = 0; i < ballQuantity; i++)
         {
@@ -39,8 +44,11 @@ public class BallSpawner : MonoBehaviour
             {
                 randomPos = new Vector2(-6, Random.Range(0, 5));
             }
-            Instantiate(balls[randomIndex], randomPos, Quaternion.identity);
+            GameObject temp=Instantiate(balls[randomIndex], randomPos, Quaternion.identity);
+            randomPos.x += 2;
+            temp.name = "" + balls[randomIndex].name + "";
         }
+        GameManager.getInstance.ballPerLevel-=ballQuantity;
     }
 
     public GameObject[] getBallArray()
@@ -51,6 +59,7 @@ public class BallSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameManager.getInstance.ballPerLevel <= 0) { CancelInvoke("Spawn"); }
+        GameManager.getInstance.checkWin();
     }
 }

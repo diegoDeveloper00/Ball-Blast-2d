@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 1271454838221695922}
   m_Layer: 8
   m_Name: SmallBall
-  m_TagString: SmallBall
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
