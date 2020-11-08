@@ -84,9 +84,10 @@ public class Ball : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, 10f);
         }
-        else if (collision.gameObject.name.Equals("Player"))
+        else if (collision.GetComponent<Player>())
         {
-            collision.GetComponent<Animator>().SetBool("Death", true);
+            Player p = collision.GetComponent<Player>();
+            p.GameOver();
         }
         Debug.Log(rb.velocity);
     }

@@ -1,15 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
     private static GameManager instance;
 
     public int ballPerLevel;
 
-    public bool win;
+    public bool win=false;
+
+    public bool GameOver=false;
 
     public static GameManager getInstance
     {
@@ -30,9 +32,29 @@ public class GameManager : MonoBehaviour
 
     public void checkWin()
     {
-        if (GameObject.FindGameObjectsWithTag("Ball").Length==0)
+        Debug.Log(GameObject.FindGameObjectsWithTag("Ball").Length);
+        if (GameManager.getInstance.ballPerLevel==0 && GameObject.FindGameObjectsWithTag("Ball").Length==0)
         {
-            win = true;
+            FindObjectOfType<SceneManage>().nextLevel(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
+
+    private void Update()
+    {
+        checkWin();
+        Debug.Log(win);
+    }
+
+    public void newLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void tryAgain()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 

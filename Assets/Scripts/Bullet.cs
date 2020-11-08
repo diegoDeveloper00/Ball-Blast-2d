@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     Rigidbody2D rb;
     public float bulletSpeed;
 
+    public int firePower;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,7 @@ public class Bullet : MonoBehaviour
 
         if (collision.GetComponent<Ball>())
         {
-            collision.GetComponent<Ball>().TakeDamage(1);
+            collision.GetComponent<Ball>().TakeDamage(firePower);
             Destroy(this.gameObject);
         }
         Destroy(this.gameObject, 3f);

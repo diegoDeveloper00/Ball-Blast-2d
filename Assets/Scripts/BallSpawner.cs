@@ -18,7 +18,6 @@ public class BallSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         InvokeRepeating("Spawn",0f, Random.Range(3, 10));
     }
 
@@ -59,7 +58,6 @@ public class BallSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.getInstance.ballPerLevel <= 0) { CancelInvoke("Spawn"); }
-        GameManager.getInstance.checkWin();
+        if (GameManager.getInstance.ballPerLevel == 0) { CancelInvoke("Spawn"); }
     }
 }
