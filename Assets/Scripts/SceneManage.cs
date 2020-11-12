@@ -19,7 +19,6 @@ public class SceneManage : MonoBehaviour
     {
         levelToLoad = levelIndex;
         anim.SetTrigger("FadeOut");
-        
     }
 
     public void fadeNextLevel()

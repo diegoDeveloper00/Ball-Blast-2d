@@ -339,3 +339,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healtNum: 10
+  valuePerBall: 1

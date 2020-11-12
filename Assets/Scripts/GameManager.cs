@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
 
     public void checkWin()
     {
-        Debug.Log(GameObject.FindGameObjectsWithTag("Ball").Length);
         if (GameManager.getInstance.ballPerLevel==0 && GameObject.FindGameObjectsWithTag("Ball").Length==0)
         {
             FindObjectOfType<SceneManage>().nextLevel(SceneManager.GetActiveScene().buildIndex + 1);
@@ -42,7 +41,10 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         checkWin();
-        Debug.Log(win);
+        if (GameOver && Input.GetMouseButtonDown(0))
+        {
+            FindObjectOfType<SceneManage>().nextLevel(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     public void newLevel()

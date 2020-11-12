@@ -8,13 +8,15 @@ public class BallSpawner : MonoBehaviour
 
     Vector2 randomPos;
 
-    int ballQuantity;
+    public int ballQuantity;
 
     float spawnDelay;
 
     public GameObject[] balls;
 
     public int randomIndex;
+
+    public GameObject temp;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,7 @@ public class BallSpawner : MonoBehaviour
 
     private void Spawn()
     {
+
         ballQuantity = Random.Range(1, 3);
 
          randomIndex = Random.Range(0, balls.Length);
@@ -43,11 +46,12 @@ public class BallSpawner : MonoBehaviour
             {
                 randomPos = new Vector2(-6, Random.Range(0, 5));
             }
-            GameObject temp=Instantiate(balls[randomIndex], randomPos, Quaternion.identity);
+            temp=Instantiate(balls[randomIndex], randomPos, Quaternion.identity);
             randomPos.x += 2;
             temp.name = "" + balls[randomIndex].name + "";
         }
         GameManager.getInstance.ballPerLevel-=ballQuantity;
+        
     }
 
     public GameObject[] getBallArray()

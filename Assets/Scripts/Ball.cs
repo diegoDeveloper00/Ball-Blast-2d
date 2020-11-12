@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using System.Linq;
 
 public class Ball : MonoBehaviour
 {
@@ -14,12 +15,18 @@ public class Ball : MonoBehaviour
     int healtNum;
 
     GameObject[] ballArray;
+
+     float valuePerBall=1f;
+
+    ProgressBar progressBar;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         textNum=GetComponentInChildren<TextMeshPro>();
         ballArray = FindObjectOfType<BallSpawner>().getBallArray();
+        progressBar=FindObjectOfType<ProgressBar>();
         if (transform.position.x > 0)
         {
             rb.velocity = Vector2.left;
@@ -51,12 +58,18 @@ public class Ball : MonoBehaviour
                 Destroy(this.gameObject);
                 instantiateMultipleBall(1);
 
-            }else if (gameObject.name.Equals("MediumBall"))
+            }
+            else if (gameObject.name.Equals("MediumBall"))
             {
                 Destroy(this.gameObject);
                 instantiateMultipleBall(0);
             }
-            Destroy(this.gameObject);
+            else if (gameObject.name.Equals("SmallBall"))
+            {
+                Destroy(this.gameObject);
+                progressBar.increaseSliderValue(valuePerBall);
+            }
+   
         }
     }
 
@@ -66,6 +79,7 @@ public class Ball : MonoBehaviour
         {
             GameObject temp=Instantiate(ballArray[index], transform.position, Quaternion.identity);
             temp.name = "" + ballArray[index].name + "";
+            temp.GetComponent<Ball>().valuePerBall = this.valuePerBall;
             transform.position = new Vector2(transform.position.x+2,transform.position.y);
         }
     }
@@ -89,7 +103,22 @@ public class Ball : MonoBehaviour
             Player p = collision.GetComponent<Player>();
             p.GameOver();
         }
-        Debug.Log(rb.velocity);
     }
 
+    public bool isName(string name)
+    {
+        return name == this.gameObject.name;
+    }
+
+    private void OnDisable()
+    {
+        if (this.gameObject.name.Equals("BigBall"))
+        {
+            valuePerBall /=(float) 2;
+        }
+        else if (this.gameObject.name.Equals("MediumBall"))
+        {
+            valuePerBall /= (float) 2;
+        }
+    }
 }
