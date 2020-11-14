@@ -20,6 +20,11 @@ public class Ball : MonoBehaviour
 
     ProgressBar progressBar;
 
+    ParticleSystem groundParticle;
+
+    [SerializeField]
+    int scorePerBall;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +32,7 @@ public class Ball : MonoBehaviour
         textNum=GetComponentInChildren<TextMeshPro>();
         ballArray = FindObjectOfType<BallSpawner>().getBallArray();
         progressBar=FindObjectOfType<ProgressBar>();
+        groundParticle = GetComponentInChildren<ParticleSystem>();
         if (transform.position.x > 0)
         {
             rb.velocity = Vector2.left;
@@ -53,6 +59,7 @@ public class Ball : MonoBehaviour
         healtNum -= damage;
         if (healtNum == 0)
         {
+            FindObjectOfType<Player>().totalScore += scorePerBall;
             if (gameObject.name.Equals("BigBall"))
             {
                 Destroy(this.gameObject);
@@ -97,6 +104,7 @@ public class Ball : MonoBehaviour
         else if (collision.gameObject.name.Equals("Ground"))
         {
             rb.velocity = new Vector2(rb.velocity.x, 10f);
+            groundParticle.Play();
         }
         else if (collision.GetComponent<Player>())
         {

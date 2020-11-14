@@ -16,10 +16,13 @@ public class Player : MonoBehaviour
 
     public int firePowerTemp;
 
+    public int totalScore;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        totalScore = 0;
     }
 
 

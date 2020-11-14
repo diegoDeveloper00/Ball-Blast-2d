@@ -434,7 +434,6 @@ MonoBehaviour:
   - {fileID: 8340185643902879895, guid: 06aff3dfecc8646409cf24a7eb1f055c, type: 3}
   randomIndex: 0
   temp: {fileID: 0}
-  spawn: 0
 --- !u!4 &550155990
 Transform:
   m_ObjectHideFlags: 0

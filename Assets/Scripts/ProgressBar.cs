@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class ProgressBar : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class ProgressBar : MonoBehaviour
 
     BallSpawner ballSpawner;
 
+    Text[] texts;
+
+    int actualLevel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +26,10 @@ public class ProgressBar : MonoBehaviour
         ballSpawner = FindObjectOfType<BallSpawner>();
         target = GameManager.getInstance.ballPerLevel;
         slider.maxValue = target;
+        texts = GetComponentsInChildren<Text>();
+        actualLevel = SceneManager.GetActiveScene().buildIndex;
+        texts[0].text = "" + actualLevel;
+        texts[1].text = "" +( actualLevel+1).ToString();
     }
 
     // Update is called once per frame
