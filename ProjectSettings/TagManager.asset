@@ -8,6 +8,7 @@ TagManager:
   - BigBall
   - MediumBall
   - SmallBall
+  - UIManager
   layers:
   - Default
   - TransparentFX

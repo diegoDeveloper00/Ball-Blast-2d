@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
 
     public GameObject bulletPrefab;
 
+    public AudioClip fireSFX;
+
 
     public int firePowerTemp;
 
@@ -29,7 +31,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.getInstance.GameOver) { return; }
+        if (GameManager.getInstance.GameOver)
+        {
+             return;
+            
+        }
         else if (!GameManager.getInstance.GameOver)
         {
             Movement();
@@ -51,7 +57,9 @@ public class Player : MonoBehaviour
         
         if (Input.GetKeyUp(KeyCode.Space))
         {
-                Instantiate(bulletPrefab, transform.position, Quaternion.identity); 
+           
+                GameObject bullet= Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            AudioSource.PlayClipAtPoint(fireSFX,bullet.transform.position);
         }
     }
 

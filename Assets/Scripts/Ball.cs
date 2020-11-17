@@ -22,6 +22,10 @@ public class Ball : MonoBehaviour
 
     ParticleSystem groundParticle;
 
+    Player player;
+
+    UIManager UIManager;
+
     [SerializeField]
     int scorePerBall;
 
@@ -33,6 +37,8 @@ public class Ball : MonoBehaviour
         ballArray = FindObjectOfType<BallSpawner>().getBallArray();
         progressBar=FindObjectOfType<ProgressBar>();
         groundParticle = GetComponentInChildren<ParticleSystem>();
+        player = FindObjectOfType<Player>();
+        UIManager = FindObjectOfType<UIManager>();
         if (transform.position.x > 0)
         {
             rb.velocity = Vector2.left;
@@ -59,7 +65,7 @@ public class Ball : MonoBehaviour
         healtNum -= damage;
         if (healtNum == 0)
         {
-            FindObjectOfType<Player>().totalScore += scorePerBall;
+            UIManager.updateScore(scorePerBall);
             if (gameObject.name.Equals("BigBall"))
             {
                 Destroy(this.gameObject);
