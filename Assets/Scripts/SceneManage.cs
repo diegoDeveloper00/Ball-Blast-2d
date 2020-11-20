@@ -31,13 +31,13 @@ public class SceneManage : MonoBehaviour
         Application.Quit();
     }
 
-    public void creditScene()
-    {
-        SceneManager.LoadScene("Credits");
-    }
-
     public void reloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void uploadSettingsScene()
+    {
+        SceneManager.LoadScene("SettingsScene");
     }
 }
