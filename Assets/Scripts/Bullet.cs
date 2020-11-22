@@ -27,6 +27,13 @@ public class Bullet : MonoBehaviour
         {
             collision.GetComponent<Ball>().TakeDamage(firePower);
             Destroy(this.gameObject);
+        }else if(this.gameObject.name.Equals("BossBullet") && collision.GetComponent<Player>())
+        {
+            collision.GetComponent<Player>().GameOver();
+        }
+        if (collision.GetComponent<Boss>())
+        {
+            collision.GetComponent<Boss>().takeDamage(firePower);
         }
         Destroy(this.gameObject, 3f);
 
